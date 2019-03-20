@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>For Honor Reaction Time</title>
+	<link rel="stylesheet" href="style.min.css">
+</head>
+<body>
+	<div id="config">
+		<label for="config-top">Guard up stance angle: </label><input onchange="setConfigs()" id="config-top" type="number" value="135" min="5" max="170">
+		<label for="config-bottom">Full block / hidden stance angle: </label><input onchange="setConfigs()" id="config-bottom" type="number" value="30" min="5" max="130">
+		<label for="config-deadzone">Guard mode dead zone: </label><input onchange="setConfigs()" id="config-deadzone" type="number" value="20" min="0" max="20">
+		<button onclick="start()">Start</button>
+		<button onclick="resetInputs()">Reset button configuration</button>
+	</div>
+	<div id="paused">Program is paused. Press start to begin.</div>
+	<div id="message">Press guard break button on your gamepad now.</div>
+	<div id="main">
+		<div id="guard">
+			<svg viewBox="0 0 23.996005 27.265327" xmlns="http://www.w3.org/2000/svg">
+			    <path id="attack-top" fill="#404040" d="m11.9980962893-.00000499601c-2.34032183927 5.58690190878-8.39011704638 4.55420671346-11.37708213167 6.87916658l2.11666664 1.32291665c.01762918728-.19292887257-.00097895832-.37189303698.10025247582-.56482190955 2.47482886049-.91196053018 4.70798122194-1.85015714336 9.16016301585-1.81642806045 4.45218338141-.03372908291 6.68533812411.90446753027 9.16016592626 1.81642806045.10122429039.19292887257.08262143646.37189303698.10025062374.56482190955l2.11666664-1.32291665c-2.9869632332-2.32495986654-9.03675896948-1.29226467122-11.37708319-6.87916658z" />
+			    <path id="attack-right" fill="#404040" d="m23.995945 20.85205c-6.008576-.76665-8.139122 4.98896-11.646069 6.41327l-.08731-2.49454c.17595.0811.321569.18679.53926.19564 2.027198-1.68729 3.956277-3.15216 6.153159-7.02473 2.255269-3.83884 2.559374-6.2419 3.007001-8.84115-.116598-.18406-.28071-.25756-.438983-.36927l2.204009-1.17163c.519994 3.74927-3.399233 8.4722.268994 13.29243z" />
+				<path id="attack-left" fill="#404040" d="m.000062 20.85204c6.008576-.76665 8.139121 4.98896 11.646068 6.41327l.08731-2.49454c-.17595.0811-.32157.18679-.53926.19564-2.027199-1.68729-3.956277-3.15216-6.153159-7.02473-2.255269-3.83884-2.559374-6.2419-3.007001-8.84115.116598-.18406.28071-.25756.438983-.36926l-2.204009-1.17163c-.519994 3.74926 3.399233 8.47219-.268994 13.29242z" />
+			    <path id="attack-guardbreak" fill="#404040" d="m12.426753 7.46941c-2.05416.00024-4.22802.35867-5.985.99728l11.1125 7.9375c1.05444-2.02528 1.77144-4.54073 1.5875-7.40834-1.76097-1.06326-4.23258-1.52676-6.715-1.52644zm-7.04333 5.23061c.49286 3.01255 1.97551 6.97727 6.61458 9.78958.2289.0206 3.25469-1.97538 5.29167-5.55625z" />
+			</svg>
+		</div>
+		<div id="stats">
+			<pre>Attempts (all) <span>....................</span> :</pre>
+			<pre>Faster than 400 ms (all) <span>..........</span> :</pre>
+			<pre>Faster than 500 ms (all) <span>..........</span> :</pre>
+			<pre>Faster than 600 ms (all) <span>..........</span> :</pre>
+			<pre>Average reaction time (all) <span>.......</span> :</pre>
+			<pre>Median  reaction time (all) <span>.......</span> :</pre>
+			<pre>Fastest reaction time (all) <span>.......</span> :</pre>
+			<pre>Slowest reaction time (all) <span>.......</span> :</pre>
+			</br>
+			<pre>Attempts (top) <span>....................</span> :</pre>
+			<pre>Faster than 400 ms (top) <span>..........</span> :</pre>
+			<pre>Faster than 500 ms (top) <span>..........</span> :</pre>
+			<pre>Faster than 600 ms (top) <span>..........</span> :</pre>
+			<pre>Average reaction time (top) <span>.......</span> :</pre>
+			<pre>Median  reaction time (top) <span>.......</span> :</pre>
+			<pre>Fastest reaction time (top) <span>.......</span> :</pre>
+			<pre>Slowest reaction time (top) <span>.......</span> :</pre>
+			</br>
+			<pre>Attempts (right) <span>..................</span> :</pre>
+			<pre>Faster than 400 ms (right) <span>........</span> :</pre>
+			<pre>Faster than 500 ms (right) <span>........</span> :</pre>
+			<pre>Faster than 600 ms (right) <span>........</span> :</pre>
+			<pre>Average reaction time (right) <span>.....</span> :</pre>
+			<pre>Median  reaction time (right) <span>.....</span> :</pre>
+			<pre>Fastest reaction time (right) <span>.....</span> :</pre>
+			<pre>Slowest reaction time (right) <span>.....</span> :</pre>
+			</br>
+			<pre>Attempts (left) <span>...................</span> :</pre>
+			<pre>Faster than 400 ms (left) <span>.........</span> :</pre>
+			<pre>Faster than 500 ms (left) <span>.........</span> :</pre>
+			<pre>Faster than 600 ms (left) <span>.........</span> :</pre>
+			<pre>Average reaction time (left) <span>......</span> :</pre>
+			<pre>Median  reaction time (left) <span>......</span> :</pre>
+			<pre>Fastest reaction time (left) <span>......</span> :</pre>
+			<pre>Slowest reaction time (left) <span>......</span> :</pre>
+			</br>
+			<pre>Attempts (guard break) <span>............</span> :</pre>
+			<pre>Faster than 400 ms (guard break) <span>..</span> :</pre>
+			<pre>Faster than 500 ms (guard break) <span>..</span> :</pre>
+			<pre>Faster than 600 ms (guard break) <span>..</span> :</pre>
+			<pre>Average reaction time (guard break) :</pre>
+			<pre>Median  reaction time (guard break) :</pre>
+			<pre>Fastest reaction time (guard break) :</pre>
+			<pre>Slowest reaction time (guard break) :</pre>
+		</div>
+	</div>
+	<script src="script.min.js"></script>
+</body>
+</html>
