@@ -6,15 +6,23 @@
 	<link rel="stylesheet" href="style.min.css">
 </head>
 <body>
-	<div id="config">
-		<label for="config-top">Guard up stance angle: </label><input onchange="setConfigs()" id="config-top" type="number" value="135" min="5" max="170">
-		<label for="config-bottom">Full block / hidden stance angle: </label><input onchange="setConfigs()" id="config-bottom" type="number" value="30" min="5" max="130">
-		<label for="config-deadzone">Guard mode dead zone: </label><input onchange="setConfigs()" id="config-deadzone" type="number" value="20" min="0" max="20">
-		<button onclick="start()">Start</button>
-		<button onclick="resetInputs()">Reset button configuration</button>
+	<div id="input-select">
+		<h1>Select input device</h1>
+		<div id='input-options'>
+			<div onclick="setInput('gamepad')">Gamepad</div>
+			<div onclick="setInput('mouse')">Keyboard / Mouse</div>
+		</div>
 	</div>
+	<!-- <div id="input-select">
+		<h1>Select input device</h1>
+		<div id='input-options'>
+			<div onclick="setInput('gamepad')">Gamepad</div>
+			<div onclick="setInput('mouse')">Keyboard / Mouse</div>
+		</div>
+	</div> -->
+	<div id="config"></div>
 	<div id="paused">Program is paused. Press start to begin.</div>
-	<div id="message">Press guard break button on your gamepad now.</div>
+	<div id="message"></div>
 	<div id="main">
 		<div id="guard">
 			<svg viewBox="0 0 23.996005 27.265327" xmlns="http://www.w3.org/2000/svg">
